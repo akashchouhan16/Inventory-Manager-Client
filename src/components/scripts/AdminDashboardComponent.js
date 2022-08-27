@@ -1,4 +1,6 @@
 import SellerCardComponent from '@/components/SellerCardComponent'
+import { mapGetters } from 'vuex';
+// import { sellers } from './mockSellers';
 
 export default {
     name: 'AdminDashboardComponent',
@@ -8,9 +10,24 @@ export default {
     data(){
         return {
             isLoading: false,
-            searchKey: '',
-            sampleID: 'YX13uUAsd76uadsetY'
+            // sellers: sellers,
+            searchKey: ''
         }
+    },
+    created(){
+        this.$store.dispatch('GET_ALL_SELLERS', {
+            success: ()=>{
+                console.log('GET ALL sellers success.');
+            },
+            error: ()=>{
+                console.warn('GET ALL seller failure.');
+            }
+        })
+    },
+    computed:{
+        ...mapGetters({
+            sellers: 'getSellers'
+        })
     },
     methods: {
         updateLoader(){
@@ -23,8 +40,5 @@ export default {
         createSeller(){
             this.$router.push({path: `/admindashboard/create`})
         }
-    },
-    computed:{
-
     }
 }

@@ -9,16 +9,17 @@
       </div>
       <div class="admin-display-container">
         <legend name="create-seller-legend">Merchant Details</legend>
-        <form class="create-seller-form">
-          <input type="text" placeholder="Full Name"/>
-          <input type="email" placeholder="Email"/>
-          <input type="text" placeholder="Phone Number"/>
-          <input type="text" placeholder="Address Line"/>
-          <input type="password" placeholder="New Password"/>
-          <input type="password" placeholder="Confirm Password" />
+        <form class="create-seller-form" @submit.prevent="">
+          <span class="registered-success-prompt" v-if="isRegisterSuccess">New Merchant has been Register!</span>
+          <input type="text" placeholder="Full Name" v-model="seller.name"/>
+          <input type="email" :class="[(emailIdErrorFlag)? 'invalid-email' : '']" :placeholder="[(emailIdErrorFlag)? 'Invalid gmail id' : 'Email']" v-model="seller.emailId">
+          <input type="text" :class="[(contactErrorFlag)? 'invalid-contact' : '']" :placeholder="[(contactErrorFlag? 'Contact must be of 10 digits' : 'Contact Number')]" v-model="seller.contact"/>
+          <input type="text" placeholder="Address Line" v-model="seller.address"/>
+          <input type="password" :class="[(passwordErrorFlag)? 'password-mismatch' : '']" placeholder="New Password" v-model="seller.password"/>
+          <input type="password" :class="[(passwordErrorFlag)? 'password-mismatch' : '']" placeholder="Confirm Password" v-model="checkPassword"/>
 
           <div class="register-seller">
-            <button class="register-seller-btn">Register Now</button>
+            <button class="register-seller-btn" @click="registerNewSeller()">Register Now</button>
           </div>
         </form>
       </div>
@@ -26,9 +27,19 @@
   </div>
 </template>
 
-<script src="./scripts/CreateSellerComponent"></script>
+<script src="./scripts/CreateSellerComponent.js"></script>
 
 <style scoped>
+.password-mismatch, .invalid-contact, .invalid-email {
+  outline: 2px solid red;
+}
+.registered-success-prompt {
+    color: #029d80;
+    padding: .3em 1em;
+    border-radius: 1em;
+    margin-bottom: 3em !important;
+    font-size: xx-small;
+}
 .main-container {
   background-color: whitesmoke;
   width: 100vw;

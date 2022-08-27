@@ -24,7 +24,7 @@
       <div class="admin-display-container">
         <div class="grid-container">
           <SellerCardComponent
-            v-for="(data, index) in 9"
+            v-for="(seller, index) in sellers" :seller="seller"
             :key="index"
           ></SellerCardComponent>
         </div>

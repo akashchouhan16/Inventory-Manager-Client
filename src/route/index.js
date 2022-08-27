@@ -3,7 +3,8 @@ import VueRouter from "vue-router";
 import LoginComponent from "@/components/LoginComponent.vue";
 import AdminDashboardComponent from "@/components/AdminDashboardComponent";
 import CreateSellerComponent from "@/components/CreateSellerComponent";
-import SellerInventoryComponent from "@/components/SellerInventoryComponent";
+import SellerInventoryComponent from '@/components/SellerInventoryComponent'
+import ViewSellerComponent from "@/components/ViewSellerComponent";
 
 Vue.use(VueRouter);
 
@@ -15,8 +16,10 @@ const routes = [
     component: AdminDashboardComponent,
     beforeEnter: (to, from, next)=>{
       const role = localStorage.getItem('role');
-      if(role === undefined || role === null){
+      if(role === undefined || role === null || (role.toLocaleLowerCase() !== 'admin' && role.toLocaleLowerCase() !== 'seller')){
         next ({name: 'LoginComponent', path: '/login'});
+      }else if(role.toLocaleLowerCase() === 'seller'){
+        next ({name: 'SellerInventoryComponent', path: '/sellerdashboard'});
       }else{
         next();
       }
@@ -28,10 +31,35 @@ const routes = [
     component: CreateSellerComponent,
   },
   {
-    path: "/admindashboard/:sellerId",
+    path: "/sellerdashboard",
     name: "SellerInventoryComponent",
     component: SellerInventoryComponent,
+    beforeEnter: (to, from, next)=>{
+      const role = localStorage.getItem('role');
+      if(role === undefined || role === null || (role.toLocaleLowerCase() !== 'admin' && role.toLocaleLowerCase() !== 'seller')){
+        next ({name: 'LoginComponent', path: '/login'});
+      }else if(role.toLocaleLowerCase() === 'admin'){
+        next ({name: 'AdminDashboardComponent', path: '/admindashboard'});
+      }else{
+        next();
+      }
+    }
   },
+  {
+    path: '/admindashboard/sellers/:userId',
+    name: 'ViewSellerComponent',
+    component: ViewSellerComponent,
+    // beforeEnter: (to, from, next)=>{
+    //   const role = localStorage.getItem('role');
+    //   if(role === undefined || role === null || (role.toLocaleLowerCase() !== 'admin' && role.toLocaleLowerCase() !== 'seller')){
+    //     next ({name: 'LoginComponent', path: '/login'});
+    //   }else if(role.toLocaleLowerCase() === 'seller'){
+    //     next ({name: 'LoginComponent', path: '/login'});
+    //   }else{
+    //     next();
+    //   }
+    // }
+  }
 ];
 
 const router = new VueRouter({
@@ -40,12 +68,5 @@ const router = new VueRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   const token = localStorage.getItem('role');
-//   if(token === 'admin' || token === 'seller')
-//     next(to);
-
-//   return next('/login');
-// })
 
 export default router;

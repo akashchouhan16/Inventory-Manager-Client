@@ -3,13 +3,14 @@
     <!-- <img :src="require(`@/assets/product_7.jpg`)"> -->
     <img :src="require(`@/assets/seller-profile-img.jpeg`)" alt="Image" />
     <p style="font-size: small">
-      Sample Seller <br /><span class="seller-ref-id">Ref ID</span
-      ><span class="seller-id">Seller ID</span>
+      {{seller.name}} <br /><span class="seller-ref-id">Ref ID</span
+      ><span class="seller-id">{{seller.userId | sellerIdFilter}}</span>
     </p>
 
-    <button class="view-inventory-btn" @click="openInventory()">
+    <button class="view-inventory-btn" @click="openInventory(seller.userId)">
       {{ !isInventoryOpened ? "View Inventory" : "Opening Inventory.." }}
     </button>
+    <button class="seller-status-btn" :class="[(seller.status)? 'disabled' : 'enabled']" @click="disbaleSeller(seller.userId)">{{sellerStatus? "Disable" : "Enable"}} Seller</button>
   </div>
 </template>
 
@@ -22,7 +23,7 @@
   text-decoration: underline;
   margin: 0.5em;
 }
-.seller-id {
+.seller-id{
   font-weight: bold;
   color: #029d80;
 }
@@ -40,7 +41,18 @@
 .view-inventory-btn {
   color: white;
 }
-
+.seller-status-btn{
+  background-color: #029d80;
+  color: white;
+  font-size: x-small;
+  max-width: 30%;
+}
+.diabled {
+  background-color: red !important;
+}
+.enabled{
+  background-color: #01c5a1 !important;
+}
 @media screen and (min-width: 950px) {
   img {
     max-width: 100%;

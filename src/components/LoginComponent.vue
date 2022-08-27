@@ -6,10 +6,10 @@
 
             <span class="error-display" v-if="errorFlag.usernameErrorFlag || errorFlag.passwordErrorFlag">Invalid Username or Password</span>
             <br>
-            <input type="text" name="username" id="username" :class="[(!errorFlag.usernameErrorFlag)? 'login-default' : 'login-failure']" v-model="user.username" placeholder="Enter username">
+            <input type="text" name="username" id="username" :class="[(!errorFlag.usernameErrorFlag)? 'login-default' : 'login-failure']" v-model="user.emailId" placeholder="username email">
             <br>
 
-            <input type="password" name="password" :class="[(!errorFlag.passwordErrorFlag)? 'login-default' : 'login-failure']" id="password" v-model="user.password" placeholder="Enter password">
+            <input type="password" name="password" :class="[(!errorFlag.passwordErrorFlag)? 'login-default' : 'login-failure']" id="password" v-model="user.password" placeholder="password">
             <div class="login-button-div">
                 <button name="login-button" :class="loginButtonClass" @click="validateCredentials()">log in</button>
             </div>
