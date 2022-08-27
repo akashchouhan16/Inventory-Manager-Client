@@ -7,13 +7,6 @@
         <h2> /-/ Inventory Manager </h2>
       </router-link>
     </div>
-
-
-    <div class="navigation">
-      <router-link class="navigation-link" :to="homeURL">Home</router-link>
-      <router-link class="navigation-link" :to="aboutURL">About</router-link>
-      <router-link class="navigation-link" :to="productURL">Products</router-link>
-    </div>
     
     <div class="login-register">
       <router-link to="/login" tag="button" class="login-btn"

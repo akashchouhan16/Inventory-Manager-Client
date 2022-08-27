@@ -1,14 +1,18 @@
 <template>
-    <div class="main-container">
-        <div class="admin-container">
+    <div class="main-container" v-on="updateLoader()">
+        <div class="loader" v-if="isLoading"></div>
+        <div class="admin-container" v-else>
             <div class="option-bar">
                 <input type="search" name="search-bar" v-model="searchKey" class="search-bar" placeholder="search"/>
                 <ion-icon name="search-sharp" @click="processSearch()"></ion-icon>
-                <button name="create-seller" class="create-seller-btn">Create Seller</button>
+                <button name="create-seller" class="create-seller-btn" @click="createSeller()">Create Seller</button>
+            </div>
+            <div class="admin-container-banner">
+                Welcome to Admin Dashboard
             </div>
             <div class="admin-display-container">
                 <div class="grid-container">    
-                    <SellerCardComponent v-for="(data, index) in 5" :key="index"></SellerCardComponent>
+                    <SellerCardComponent v-for="(data, index) in 9" :key="index"></SellerCardComponent>
                 </div>
             </div>
         </div>
@@ -21,6 +25,32 @@
 </script>
 
 <style scoped>
+.loader {
+  margin: 10vh;
+  border: 1em solid lightgray;
+  border-radius: 50%;
+  border-top: 16px solid #029d80;
+  width: 4em;
+  height: 4em;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  /* 25% { -webkit-transform: rotate(360deg);}
+  50% { -webkit-transform: rotate(0deg);}
+  75% {-webkit-transform: rotate(360deg);} */
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  50% {transform: rotate(360deg); }
+  75% {transform: rotate(540deg);}
+  100% { transform: rotate(720deg); }
+}
 .main-container{
     background-color: whitesmoke;
     width: 100vw;
@@ -32,12 +62,32 @@
     padding-top: 1em;
     overflow: scroll;
 }
+.admin-container-banner{
+    width: 85vw;
+    height: 20vh;
+    margin: 2em;
+    background: whitesmoke;
+    border: none;
+    border-radius: 1em;
+    box-shadow: 2px 2px 10px #f9f9f9;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    color: gray;
+}
+.admin-container-banner:hover{
+    cursor: pointer;
+    color: black;
+}
 .admin-container{
-    height: 70vh;
-    width: 80vw;
+    height: 80vh;
+    width: 90vw;
     background-color: white;
     border: none;
     border-radius: 1em;
+    overflow: scroll;
 }
 
 .admin-container .option-bar {
@@ -84,7 +134,7 @@
 .admin-display-container{
     background: white;
     height: 20vh;
-    width: 30vw;
+    width: 90vw;
 }
 .create-seller-btn{
   margin: auto .8em;

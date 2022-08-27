@@ -1,37 +1,34 @@
 <template>
-    <div class="product-card">
+    <div class="seller-card">
             <!-- <img :src="require(`@/assets/product_7.jpg`)"> -->
             <img :src="require(`@/assets/brand-logo.png`)" alt="Image">
-            <p style="font-size: small;"> Sample Item
-            <br><span class="discounted-price">Rs. ItemPrice </span><span class="price-tag">Rs. MinPrice</span></p>
-            <button type="submit" style="color: white; display: flex; justify-content: center; align-items: center;">
-                <ion-icon name="cart-sharp" style="margin-right:.5em; font-size:large;"></ion-icon>
-                <span class="add-to-cart-btntext">View Inventory</span>
-                <span>Opening Inventory..</span>
-            </button>
+            <p style="font-size: small;"> Sample Seller
+            <br><span class="seller-ref-id">Ref ID</span><span class="seller-id">Seller ID</span></p>
+            
+            <button class="view-inventory-btn" @click="openInventory()" >{{!isInventoryOpened? "View Inventory" : "Opening Inventory.."}}</button>
         </div>
 </template>
 
-<script></script>
+<script src="./scripts/SellerCardComponent.js"></script>
 
 <style scoped>
 
-.discounted-price{
+.seller-ref-id{
     font-size: small;
     color: gray;
-    text-decoration: line-through;
+    text-decoration: underline;
     margin: 0.5em;
 }
-.price-tag{
+.seller-id{
     font-weight: bold;
-    color: coral;
+    color: #029d80;
 }
-.price-tag:hover{
+.seller-id:hover{
     text-decoration: underline;
     cursor: pointer;
 }
 
-.product-card img {
+.seller-card img {
     border-radius: 0.3em;
     margin-bottom: 0.4em;
 }
@@ -45,7 +42,6 @@
   
 .grid-container {
     border-radius: 3%;
-
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 1em;
@@ -53,7 +49,7 @@
     scroll-behavior: smooth;
 }
 
-.product-card {
+.seller-card {
     background-color: rgb(255, 255, 255);
     border-radius: 2%;
     border: .02em solid rgba(0, 0, 0, 0.091);
@@ -84,18 +80,12 @@ button:hover {
     background-color: #029d80 !important;
 }
 
-.product-card:hover{
+.seller-card:hover{
     background-color: rgb(255, 255, 255);
     box-shadow: 3px 3px 20px rgb(107, 106, 106);
     cursor: pointer;
 }
 
-.product-page{
-    display: inline;
-    height: 40vh;
-    width: 50vw;
-    background-color: whitesmoke;
-}
 
 @media screen and (max-width: 950px) {
     img {
@@ -119,10 +109,10 @@ button:hover {
     img {
         width: 90%;
     }
-    .product-card {
+    .seller-card {
         height: max-content;
     }
-    .product-card button {
+    .seller-card button {
         font-size: small;
         width: 40vw;
         height: 10vh !important;
@@ -134,10 +124,10 @@ button:hover {
 
 @media screen  and (max-width: 450px){
     
-    .product-card img {
+    .seller-card img {
         width: 100%;
     }
-    .product-card button {
+    .seller-card button {
         font-size: small;
         width: 40vw;
         height: 5vh !important;
