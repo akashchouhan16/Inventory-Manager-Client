@@ -4,7 +4,8 @@
       <!-- {{getHeaderFromStore}} -->
       <router-link to="/">
         <!-- <img src="@/assets/brand-logo.png" alt="IMA"> -->
-        <h2> /-/ Inventory Manager </h2>
+        <h2> Inventory Manager </h2>
+        <span class="nav-bar-copy-right">&copy; Blibli 2022</span>
       </router-link>
     </div>
     
@@ -32,7 +33,7 @@
   justify-content: space-between;
 }
 .nav-bar .brand{
-    font-size: larger;
+    font-size: large;
 }
 .navigation {
   padding: 1em;
@@ -55,7 +56,15 @@
     max-height: 20px;
     margin: 0;
 }
-
+.nav-bar-copy-right{
+  font-size: xx-small;
+  color: #f9f9f9;
+  transition: all .3s;
+}
+.nav-bar-copy-right:hover{
+  color: white;
+  cursor: pointer;
+}
 .login-btn {
   margin: auto .8em;
   padding: 0.4em 2em;
@@ -95,10 +104,12 @@
   padding: 1vh 1vw 0 1vw;
   text-decoration: none;
   font-size: 17px;
+  transition: all .2s;
 }
 
 .nav-bar a:hover {
   color: #ffffff;
+  cursor: pointer;
 }
 
 

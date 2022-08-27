@@ -2,7 +2,7 @@
 <div class="container-login">
     <div class="login-card">
         <form class="login-form" @submit.prevent>
-            <!-- <img src="../assets/logo-blibli-white.svg" alt="blibli"><br> -->
+            <img src="../assets/brand-logo.png" alt="blibli"><br>
 
             <span class="error-display" v-if="errorFlag.usernameErrorFlag || errorFlag.passwordErrorFlag">Invalid Username or Password</span>
             <br>
@@ -112,6 +112,10 @@ input:focus{
     border-radius: 1em;
     justify-content: center;
     align-items: center;
+}
+.login-form img {
+    border-radius: 20%;
+    max-width: 30%;
 }
 .login-button-div .login-button, .reset-button{
     color: white;

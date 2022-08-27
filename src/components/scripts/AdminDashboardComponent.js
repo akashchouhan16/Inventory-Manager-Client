@@ -21,7 +21,7 @@ export default {
             
         },
         createSeller(){
-            this.$router.push({path: `/admindashboard/${this.sampleID}`})
+            this.$router.push({path: `/admindashboard/create`})
         }
     },
     computed:{

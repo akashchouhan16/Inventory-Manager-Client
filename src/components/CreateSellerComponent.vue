@@ -1,98 +1,107 @@
 <template>
-    <div class="main-container">
-        <div class="admin-container">
-            <div class="admin-container-banner">
-                Register New Merchant Account
-                <router-link to="/admindashboard" class="router-link-btn">Back To Dashboard</router-link>
-            </div>
-            <div class="admin-display-container">
-                <form class="create-seller-form">
-                    <input type="text" placeholder="Enter Seller Name">
-                    <input type="email" placeholder="Enter Seller Email">
-                    <input type="text" placeholder="Enter Seller">
-                </form>
-            </div>
-        </div>
+  <div class="main-container">
+    <div class="admin-container">
+      <div class="admin-container-banner">
+        Register New Merchant Account
+        <router-link to="/admindashboard" class="router-link-btn"
+          >Back To Dashboard</router-link
+        >
+      </div>
+      <div class="admin-display-container">
+        <legend name="create-seller-legend">Merchant Details</legend>
+        <form class="create-seller-form">
+          <input type="text" placeholder="Full Name"/>
+          <input type="email" placeholder="Email"/>
+          <input type="text" placeholder="Phone Number"/>
+          <input type="text" placeholder="Address Line"/>
+          <input type="password" placeholder="New Password"/>
+          <input type="password" placeholder="Confirm Password" />
+
+          <div class="register-seller">
+            <button class="register-seller-btn">Register Now</button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </template>
 
 <script src="./scripts/CreateSellerComponent"></script>
 
 <style scoped>
+.main-container {
+  background-color: whitesmoke;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex: column;
+  justify-content: center;
+  align-content: center;
+  padding-top: 1em;
+  overflow: scroll;
+}
+.admin-container-banner {
+  max-width: 95%;
+  height: 20vh;
+  margin: 2em;
+  background: whitesmoke;
+  border: none;
+  border-radius: 1em;
+  box-shadow: 2px 2px 10px #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+  color: gray;
+}
 
-.main-container{
-    background-color: whitesmoke;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex: column;
-    justify-content: center;
-    align-content: center;
-    padding-top: 1em;
-    overflow: scroll;
+.admin-container-banner:hover {
+  cursor: pointer;
+  color: black;
 }
-.admin-container-banner{
-    width: 85vw;
-    height: 20vh;
-    margin: 2em;
-    background: whitesmoke;
-    border: none;
-    border-radius: 1em;
-    box-shadow: 2px 2px 10px #f9f9f9;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: large;
-    color: gray;
-}
-
-.admin-container-banner:hover{
-    cursor: pointer;
-    color: black;
-}
-.admin-container{
-    height: 80vh;
-    width: 90vw;
-    background-color: white;
-    border: none;
-    border-radius: 1em;
-    overflow: scroll;
+.admin-container {
+  height: 80vh;
+  width: 90vw;
+  background-color: white;
+  border: none;
+  border-radius: 1em;
+  overflow: scroll;
 }
 .create-seller-form {
-    padding: 1em;
-    width: 100%;
-    height: 100%;
+  padding: 1em;
+  width: 100%;
+  height: 100%;
 }
-.create-seller-form input{
-    width: 50%;
-    height: 3vh;
-    margin: 0.5em;
-    border: none;
-    border-radius: 1em;
-    padding: 0.4em 0.7em;
-    color: rgb(101, 100, 100);
-}
-
-.create-seller-form input:focus{
-    outline: 2px solid rgb(200, 200, 200);
+.create-seller-form input {
+  width: 50%;
+  height: 3vh;
+  margin: 0.5em;
+  border: none;
+  border-radius: 1em;
+  padding: 0.4em 0.7em;
+  color: rgb(101, 100, 100);
 }
 
-.admin-display-container{
-    background: #f9f9f9;
-    height: 20vh;
-    margin: 1em 2em;
-    padding: 2em;
-    width: 80vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border-radius: 1em;
+.create-seller-form input:focus {
+  outline: 2px solid rgb(200, 200, 200);
 }
 
-.create-seller-btn{
-  margin: auto .8em;
+.admin-display-container {
+  background: #f9f9f9;
+  height: 50%;
+  margin: 1em 2em;
+  padding: 2em;
+  max-width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1em;
+}
+
+.create-seller-btn {
+  margin: auto 0.8em;
   padding: 0.5em 2em;
   background-color: #01c5a1;
   border: 2px solid whitesmoke !important;
@@ -101,39 +110,93 @@
   transition: all 0.3s;
 }
 
-.create-seller-btn:hover{
-    background-color: #029d80;
-    box-shadow: 2px 2px 5px #f9f9f9;
-    cursor: pointer;
+.create-seller-btn:hover {
+  background-color: #029d80;
+  box-shadow: 2px 2px 5px #f9f9f9;
+  cursor: pointer;
 }
 
-.router-link-btn{
-    background-color: #01c5a1;
-    color: white;
-    border-radius: 1em;
-    margin: 1em;
-    padding: .5em .7em;
-    text-decoration: none;
-    font-size: small;
+.register-seller {
+  margin: 1em;
+}
+.register-seller-btn {
+  margin: auto 0.8em;
+  padding: 0.5em 2em;
+  background-color: #01c5a1;
+  border: 2px solid whitesmoke !important;
+  border-radius: 0.5em;
+  color: white;
+  transition: all 0.3s;
 }
 
-.grid-container {
-    border-radius: 3%;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    gap: 1em;
-    padding: 5vh 5vh;
-    scroll-behavior: smooth;
+.register-seller-btn:hover {
+  cursor: pointer;
+  background-color: #029d80;
 }
+.router-link-btn {
+  background-color: #01c5a1;
+  color: white;
+  border-radius: 1em;
+  margin: 1em;
+  padding: 0.5em 0.7em;
+  text-decoration: none;
+  font-size: small;
+}
+
 @media screen and (max-width: 950px) {
-    .grid-container{
-        grid-template-columns: 1fr 1fr;
-    }
+  .admin-display-container {
+    background: #f9f9f9;
+    height: 50%;
+    margin: 1em 2em;
+    padding: 2em;
+    width: 77vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1em;
+    align-content: center;
+    flex-wrap: nowrap;
+  }
 }
 
 @media screen and (max-width: 700px) {
-    .grid-container {
-        grid-template-columns: 2fr;
-    }
+  .admin-display-container {
+    width: 68vw;
+  }
+}
+@media screen and (max-width: 450px) {
+  .admin-display-container {
+    padding: 2em 1em;
+    width: 66vw;
+  }
+  .admin-container-banner {
+    font-size: small;
+  }
+  .router-link-btn {
+    padding: 0.5em 0.7em;
+    font-size: x-small;
+  }
+  .create-seller-form {
+    padding: .5em;
+    width: 100%;
+    height: 100%;
+  }
+  .create-seller-form input {
+    width: 79%;
+    height: 3vh;
+    margin: 0.5em;
+    border: none;
+    border-radius: 1em;
+    padding: 0.4em 0.7em;
+    color: rgb(101, 100, 100);
+  }
+  .register-seller {
+    margin: 0.3em;
+  }
+  .register-seller-btn {
+    margin: auto 0.8em;
+    padding: 0.5em 1em;
+  }
 }
 </style>
