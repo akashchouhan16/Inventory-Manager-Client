@@ -3,17 +3,23 @@
     <div class="container">
       <div class="left">
         <img
-          src="https://previews.123rf.com/images/aquir/aquir1311/aquir131100316/23569861-sample-grunge-red-round-stamp.jpg"
+          :src="require(`@/assets/brand-logo.png`)"
         /><br />
-        <div class="info">
+        <!-- <div class="info" v-if="sellerobj">
           NAME: {{ sellerobj.data.name }}<br />
           EMAIL: {{ sellerobj.data.emailId }}<br />
           ADDRESS:{{ sellerobj.data.address }}<br />
           ID:{{ sellerobj.data.sellerId }}<br />
-          CONTACT:{{ sellerobj.data.contact }}<br />
+          CONTACT:{{ sellerobj.data.contact }}<br /> -->
+        <!-- </div> -->
+        <div class="info">
+          NAME: : Sample Seller<br/>
+          ADDRESS: Sample Address<br/>
+          ID:   QB65231<br/>
+          CONTACT: 9988776655<br/>
         </div>
         <div>
-          <input class="view-button" type="button" value="VIEW PRODUCTS" />
+          <input class="view-button" type="button" value="VIEW PRODUCTS"  @click="viewProducts()"/>
         </div>
       </div>
       <div class="right">
@@ -26,13 +32,13 @@
             <tr>
               <td>Name:</td>
               <td>
-                <input type="text" v-model="obj.productName" />
+                <input type="text" v-model="obj.productName" placeholder="Product Name"/>
               </td>
             </tr>
             <tr>
               <td>IMAGE(URL):</td>
               <td>
-                <input type="text" v-model="obj.imageUrl" />
+                <input type="text" v-model="obj.imageUrl" placeholder="Product Image URL"/>
               </td>
             </tr>
             <tr>
@@ -48,26 +54,26 @@
             <tr>
               <td>Selling price:</td>
               <td>
-                <input type="number" v-model="obj.sellingPrice" />
+                <input type="number" v-model="obj.sellingPrice" placeholder="Product Selling Price"/>
               </td>
             </tr>
             <tr>
               <td>Product price:</td>
               <td>
-                <input type="number" v-model="obj.productPrice" />
+                <input type="number" v-model="obj.productPrice" placeholder="Product Cost Price"/>
               </td>
             </tr>
 
             <tr>
               <td>Set quantity:</td>
               <td>
-                <input type="number" v-model="obj.quantity" />
+                <input type="number" v-model="obj.quantity" placeholder="Quantity"/>
               </td>
             </tr>
             <tr>
               <td>Promo:</td>
               <td>
-                <input type="text" v-model="obj.promo" />
+                <input type="text" v-model="obj.promo" placeholder="Select Promo"/>
               </td>
             </tr>
           </table>

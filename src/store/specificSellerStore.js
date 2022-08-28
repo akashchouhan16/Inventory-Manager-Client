@@ -18,7 +18,7 @@ export default {
   },
 
   actions: {
-    getsellerdetails(context, sellerid) {
+    getsellerdetailsFromService(context, sellerid) {
       getsellerdetail({
         sellerid,
         success: (data) => {

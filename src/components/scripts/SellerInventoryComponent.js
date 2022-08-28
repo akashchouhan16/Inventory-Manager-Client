@@ -21,6 +21,9 @@ export default {
     addproduct() {
       this.$store.dispatch("addsellerproductstoservice", this.obj);
     },
+    viewProducts(){
+      this.$router.push({path: '/sellerdashboard/products', name: 'ProductContainerComponent'})
+    }
   },
 
   computed: {
@@ -32,7 +35,7 @@ export default {
   created() {
     const sellerId = localStorage.getItem('userId');
     this.$store.dispatch(
-      "getsellerdetails",
+      "getsellerdetailsFromService",
       sellerId
       // "e44f6029-31e3-4138-8fcc-3e1390195477"
     );

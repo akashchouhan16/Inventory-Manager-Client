@@ -8,6 +8,7 @@
 import SellerProductsComponent from  './SellerProductComponent.vue'
 import { mapGetters } from 'vuex';
 export default {
+   name: 'ProductContainerComponent',
    components:
    {
        SellerProductsComponent,
