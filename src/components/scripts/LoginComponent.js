@@ -20,20 +20,27 @@ export default{
             this.$store.dispatch('ATTEMPT_LOGIN', {
                 success: (response)=>{
                     this.$router.push({path: '/admindashboard'});
+                    this.isloggedIn = true;
                     console.log(response);
                 },
                 error: (err)=>{
                     console.warn(err);
+                    this.isloggedIn = false;
                     this.errorFlag.usernameErrorFlag = this.errorFlag.passwordErrorFlag = true;
                 },
                 user: this.user
             });
+            // localStorage.setItem('role', 'admin');
+            // localStorage.setItem('userId', 'admin');
+            // localStorage.setItem('emailId', this.user.emailId);
+            // this.$router.push({path: '/admindashboard'});
+            // this.isloggedIn = true;
             
         },
         resetCredentials(){
             this.user.emailId = "";
             this.user.password = "";
-        }
+        },
     }
 }
 

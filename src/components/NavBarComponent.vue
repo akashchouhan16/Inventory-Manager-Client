@@ -10,13 +10,15 @@
     </div>
     
     <div class="login-register">
-      <router-link to="/login" tag="button" class="login-btn"
+      <router-link v-if="!isLoggedIn" to="/login" tag="button" class="login-btn"
         >Login</router-link>
+        <router-link v-if="isLoggedIn" @click="logOut()" to="/login" tag="button" class="login-btn"
+        >Logout</router-link>
     </div>
   </nav>
 </template>
 
-<script src="./scripts/NavBarComponent"></script>
+<script src="./scripts/NavBarComponent.js"></script>
 
 <style scoped>
 .nav-bar {

@@ -5,6 +5,7 @@ import AdminDashboardComponent from "@/components/AdminDashboardComponent";
 import CreateSellerComponent from "@/components/CreateSellerComponent";
 import SellerInventoryComponent from '@/components/SellerInventoryComponent'
 import ViewSellerComponent from "@/components/ViewSellerComponent";
+import ProductContainerComponent from '@/components/ProductContainerComponent'
 
 Vue.use(VueRouter);
 
@@ -49,16 +50,31 @@ const routes = [
     path: '/admindashboard/sellers/:userId',
     name: 'ViewSellerComponent',
     component: ViewSellerComponent,
-    // beforeEnter: (to, from, next)=>{
-    //   const role = localStorage.getItem('role');
-    //   if(role === undefined || role === null || (role.toLocaleLowerCase() !== 'admin' && role.toLocaleLowerCase() !== 'seller')){
-    //     next ({name: 'LoginComponent', path: '/login'});
-    //   }else if(role.toLocaleLowerCase() === 'seller'){
-    //     next ({name: 'LoginComponent', path: '/login'});
-    //   }else{
-    //     next();
-    //   }
-    // }
+    beforeEnter: (to, from, next)=>{
+      const role = localStorage.getItem('role');
+      if(role === undefined || role === null || (role.toLocaleLowerCase() !== 'admin' && role.toLocaleLowerCase() !== 'seller')){
+        next ({name: 'LoginComponent', path: '/login'});
+      }else if(role.toLocaleLowerCase() === 'seller'){
+        next ({name: 'LoginComponent', path: '/login'});
+      }else{
+        next();
+      }
+    }
+  },
+  {
+    path: '/sellerdashboard/products',
+    name: 'ProductContainerComponent',
+    component : ProductContainerComponent,
+    beforeEnter: (to, from, next)=>{
+      const role = localStorage.getItem('role');
+      if(role === undefined || role === null || (role.toLocaleLowerCase() !== 'admin' && role.toLocaleLowerCase() !== 'seller')){
+        next ({name: 'LoginComponent', path: '/login'});
+      }else if(role.toLocaleLowerCase() === 'admin'){
+        next ({name: 'LoginComponent', path: '/login'});
+      }else{
+        next(); //is role is seller
+      }
+    }
   }
 ];
 
