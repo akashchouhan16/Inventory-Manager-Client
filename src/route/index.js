@@ -49,16 +49,16 @@ const routes = [
     path: '/admindashboard/sellers/:userId',
     name: 'ViewSellerComponent',
     component: ViewSellerComponent,
-    // beforeEnter: (to, from, next)=>{
-    //   const role = localStorage.getItem('role');
-    //   if(role === undefined || role === null || (role.toLocaleLowerCase() !== 'admin' && role.toLocaleLowerCase() !== 'seller')){
-    //     next ({name: 'LoginComponent', path: '/login'});
-    //   }else if(role.toLocaleLowerCase() === 'seller'){
-    //     next ({name: 'LoginComponent', path: '/login'});
-    //   }else{
-    //     next();
-    //   }
-    // }
+    beforeEnter: (to, from, next)=>{
+      const role = localStorage.getItem('role');
+      if(role === undefined || role === null || (role.toLocaleLowerCase() !== 'admin' && role.toLocaleLowerCase() !== 'seller')){
+        next ({name: 'LoginComponent', path: '/login'});
+      }else if(role.toLocaleLowerCase() === 'seller'){
+        next ({name: 'LoginComponent', path: '/login'});
+      }else{
+        next();
+      }
+    }
   }
 ];
 
