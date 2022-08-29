@@ -10,6 +10,7 @@ import ProductContainerComponent from '@/components/ProductContainerComponent'
 Vue.use(VueRouter);
 
 const routes = [
+  {path: '/', name: 'LoginComponent', component: LoginComponent},
   { path: "/login", name: "LoginComponent", component: LoginComponent },
   {
     path: "/admindashboard",

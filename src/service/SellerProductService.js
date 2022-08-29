@@ -51,7 +51,7 @@ export const addsellerproducts = ({payload,success,error}) => {
 export const getsellerdetail = ({sellerid,success,error}) => {
 
     axios
-    .get(`http://10.30.1.35:8005/admin/seller/${sellerid}`)
+    .get(`http://10.30.1.35:8005/seller/${sellerid}`)
         .then((response) => {
             
             success && success(response)
