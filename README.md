@@ -6,7 +6,17 @@
 * **[Akash Chouhan](mailto:akash.chouhan@quinbay.com)**
 * **[Daniel Nielson](mailto:daniel.nelson@quinbay.com)**
 
-## UI Project setup
+---
+### Use Case
+* **Inventory Manager** has the provision to supervise the merchant/seller traffic on your e-commerce site.
+    * Admin can register new sellers on the site.
+    * Admin has the access to the current inventory status of each and every registered seller.
+    * Admin user can enable or disable sellers.
+    * Admin can gauge the estimated profit from specific sellers.
+* Sellers can use their credentials to validate themselves againts the IMA auth microservice and they would be exposed to seller's dashboard
+* Seller can add, delete or update their stock status.
+
+### Project setup
 
 **Installation**
 1. Install Node.js version 14
@@ -39,7 +49,7 @@
     See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ---
-## UI Preview
+### UI Preview
 
 * **Login**
     ![Login-Screen](./src/assets/login-screen.png)
