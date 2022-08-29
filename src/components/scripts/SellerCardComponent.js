@@ -26,9 +26,10 @@ export default{
             this.isInventoryOpened = true;
             setInterval(()=>{
                 this.isInventoryOpened = false
-            }, 1200);
+            }, 1000);            
 
             this.$router.push({path: `/admindashboard/sellers/${userId}`});
+            
         },
         disbaleSeller(userId){
             // This is a toggle function to disable or enable a seller.

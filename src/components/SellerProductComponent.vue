@@ -1,23 +1,85 @@
 <template >
   <div class="cards">
-    <img :src="require(`@/assets/brand-logo.png`)" />
-    <div class="info">
-      <div class="name">{{ product.productName }}</div>
-      <div class="price">₹{{ product.productPrice }}</div>
-      <div class="discriptiontag">
-        Description<span class="discriptiontext">{{
-          product.discription
-        }}</span>
-      </div>
-      <div class="quantity">Quantity:{{ product.quantity }}</div>
-      <div class="edit">
-        <input class="edit-product" type="button" value="EDIT" />
-      </div>
+    <div class="update" v-if="clicked">
+      <form name="addproduct">
+        <table>
+          <tr>
+            <td>Name:</td>
+            <td>
+              <input type="text" v-model="pname" />
+            </td>
+          </tr>
+          <tr>
+            <td>IMAGE(URL):</td>
+            <td>
+              <input type="text" v-model="image" />
+            </td>
+          </tr>
+          <tr>
+            <td>Description:</td>
+            <td>
+              <textarea rows="4" cols="16" v-model="des"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Selling price:</td>
+            <td>
+              <input type="number" v-model="sprice" />
+            </td>
+          </tr>
+          <tr>
+            <td>Product price:</td>
+            <td>
+              <input type="number" v-model="pprice" />
+            </td>
+          </tr>
+          <tr>
+            <td>Promo:</td>
+            <td>
+              <input type="text" v-model="pro" />
+            </td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td>
+              <input
+                type="button"
+                class="display-button"
+                value="update"
+                @click="update()"
+              />
+            </td>
+          </tr>
+        </table>
+      </form>
     </div>
-    <br />
-    <div class="modify">
-      <input class="display-button" @click="sub()" type="button" value="-" />
-      <input class="display-button" @click="add()" type="button" value="+" />
+
+    <div v-else>
+      <img :src="require(`@/assets/brand-logo.png`)" />
+      <div class="info">
+        <div class="name">{{ product.productName }}</div>
+        <div class="price">₹{{ product.productPrice }}</div>
+        <div class="discriptiontag">
+          Description<span class="discriptiontext">{{
+            product.discription
+          }}</span>
+        </div>
+        <div class="quantity">Quantity:{{ product.quantity }}</div>
+        <div class="edit">
+          <input
+            class="edit-product"
+            type="button"
+            value="EDIT"
+            @click="changeflag()"
+          />
+        </div>
+      </div>
+      <br />
+      <div class="modify">
+        <input class="display-button" @click="sub()" type="button" value="-" />
+        <input class="display-button" @click="add()" type="button" value="+" />
+      </div>
     </div>
   </div>
 </template>
@@ -31,26 +93,45 @@ export default {
     },
   },
 
-  // data()
-  // {
-  //     return
-  //     {
-  //            obj:
-  //            {
-  //                   sid:this.product.sellerId;
-  //                   pid:this.product.productId;
-  //                   name:this.product.productName;
-  //                   des:this.product.discription;
-  //                   pprice:this.product.productPrice;
-  //                   sprice:this.product.sellingPrice;
-  //                   quantity:this.product.quantity;
-  //                   image:this.product.imageUrl;
-  //                    promo:this.product.promo;
-  //            }
-  //     }
-  // },
+  data() {
+    return {
+      clicked: false,
+      pname: "",
+      pprice: 0,
+      sprice: 0,
+      image: "",
+      pro: 0,
+      des: "",
+    };
+  },
 
   methods: {
+    changeflag() {
+      this.clicked = true;
+    },
+
+    update() {
+      this.clicked = false;
+      if(this.pname || this.des=='' || this.image=='' || this.sprice==0 || this.pprice==0 || this.quantity==0 || this.pro==0)
+
+          alert("Enter all the details");
+
+        else{
+      var obj = {
+        sellerId: this.product.sellerId,
+        productId: this.product.productId,
+        productName: this.pname,
+        discription: this.des,
+        productPrice: this.pprice,
+        sellingPrice: this.sprice,
+        quantity: this.product.quantity,
+        imageUrl: this.image,
+        promo: this.pro,
+      };
+    }
+
+      this.$store.dispatch("putsellerproductstoservice", obj);
+    },
     add() {
       var obj = {
         sellerId: this.product.sellerId,
@@ -91,6 +172,70 @@ export default {
 </script>
 
 <style scoped>
+input[type="text"] {
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #01c5a1;
+}
+
+input[type="number"] {
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #01c5a1;
+}
+
+textarea {
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #01c5a1;
+}
+
+.edit-product {
+  display: flex;
+  justify-content: center;
+}
+.edit-product {
+  background-color: #01c5a1;
+
+  border: none;
+
+  border-radius: 5px;
+
+  width: 35px;
+
+  color: black;
+
+  margin: 0.5em 5em;
+
+  width: 80px;
+
+  height: 30px;
+
+  font-size: 20px;
+
+  transition-duration: 0.3s;
+}
+.input[type="button"] {
+  background-color: #01c5a1;
+
+  border: none;
+
+  border-radius: 5px;
+
+  width: 35px;
+
+  color: black;
+
+  margin: 5px;
+
+  width: 80px;
+
+  height: 30px;
+
+  font-size: 20px;
+
+  transition-duration: 0.3s;
+}
 .discriptiontag {
   margin-top: 3px;
 
@@ -99,7 +244,7 @@ export default {
   border-bottom: 1px grey;
 }
 
-.discriptiontag:hover{
+.discriptiontag:hover {
   text-decoration: underline;
   cursor: pointer;
 }
@@ -228,6 +373,12 @@ img {
   }
   .quantity {
     font-size: 11px;
+  }
+}
+
+@media screen and (max-width: 1060px) {
+  .cards {
+    width: 50%;
   }
 }
 </style>

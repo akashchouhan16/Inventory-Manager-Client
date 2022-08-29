@@ -12,8 +12,8 @@
     <div class="login-register">
       <router-link v-if="!isLoggedIn" to="/login" tag="button" class="login-btn"
         >Login</router-link>
-        <router-link v-if="isLoggedIn" @click="logOut()" to="/login" tag="button" class="login-btn"
-        >Logout</router-link>
+        <button v-if="isLoggedIn" @click="logOut()" class="login-btn"
+        >Logout</button>
     </div>
   </nav>
 </template>
