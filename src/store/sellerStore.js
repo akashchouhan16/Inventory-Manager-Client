@@ -1,5 +1,5 @@
 import {registerNewSeller, getSellerById} from '@/service/RegisterSellerService'
-import { getAllSellers, disbaleSeller } from '@/service/AdminService';
+import { getAllSellers, disbaleSeller, getSellerFromSearch } from '@/service/AdminService';
 
 export default {
     state: {
@@ -61,11 +61,16 @@ export default {
                 }
             })
         },
-        DISABLE_SELLER(context, userId){
+        DISABLE_SELLER({dispatch}, userId){
             disbaleSeller({
                 success: (response)=>{
                     console.log(response);
                     console.warn(`Seller: ${userId} is now disabled from the portal`);
+                    dispatch('GET_ALL_SELLERS', {
+                        success: ()=>{},
+                        error: ()=>{}
+                    });
+                
                 },
                 error: (err)=>{
                     console.warn(err);
@@ -82,6 +87,17 @@ export default {
                     error && error(err);
                 },
                 userId
+            })
+        },
+        GET_SELLER_FROM_SEARCH({commit}, searchKey){
+            getSellerFromSearch({
+                success: (response)=>{
+                    commit('setSellers', response.data);
+                },
+                error: (err)=>{
+                    console.warn(err);
+                },
+                searchKey
             })
         }
     }

@@ -6,21 +6,16 @@
         <div class="seller-header">Seller Ref ID: {{userId}}</div>
       </div>
       <div class="admin-display-container">
+        <img :src="require(`@/assets/brand-logo.png`)" alt="Image">
         <div class="seller-details">
             <h3 class="stats-header">Current Statistics for Seller : {{seller.name? seller.name : 'Default Seller'}}</h3>
-            <div class="seller-name">
-                <div class="name-tag">Seller Name: </div>
-                <div class="name-value">{{seller.name? seller.name : "Default Seller Name"}}</div>
-            </div>
-           
-            <br>
-            Seller Email: {{seller.emailId? seller.emailId : "default@gmail.com"}}
-            <br>
-            Select Contact: {{seller.contact? seller.contact : '9988776655'}}
-            <br>
-            Seller Address: {{seller.address? seller-address : 'Caledon Square, Avinashi Road, Coimbatore - 641004'}}
-            <br>
-            <span class="seller-profit">{{seller.profit? seller.profit : 'Current Projected Profit based on Inventory Status: $7534'}}</span>
+            <p class="name-value">Name: {{seller.name? seller.name : "Default Seller Name"}}</p>
+                
+            <p class="email-tag">Email: {{seller.emailId? seller.emailId : "default@gmail.com"}}</p>
+            <p class="contact-tag">Contact: {{seller.contact? seller.contact : '9988776655'}}</p>
+            <p class="address-tag">Address: {{seller.address? seller.address : 'Caledon Square, Avinashi Road, Coimbatore - 641004'}}</p>
+            <p class="inventory-count">Inventory Count: <span class="inventory-counter">{{seller.products? seller.products.length : '11'}}</span></p>
+            <p class="seller-profit">Estimated Profits: <span class="profit-amount">₹ {{estimatedProfit}}</span></p>
         </div>
       </div>
     </div>
@@ -34,7 +29,8 @@ export default{
     data(){
         return {
             userId: this.$route.params.userId,
-            seller: {}
+            seller: {},
+            estimatedProfit: 7534
         }
     },
     created(){
@@ -43,6 +39,11 @@ export default{
                 this.seller = response.data;
                 console.log(response.data);
                 console.log(this.seller);
+
+                //profit calculation:
+                this.seller.products.forEach(product=>{
+                    this.estimatedProfit += (product.sellingPrice - product.productPrice);
+                })
             },
             error : (err)=>{
                 console.warn('Could not fetch the specific seller : ', this.userId);
@@ -55,6 +56,14 @@ export default{
 
 </script>
 <style scoped>
+.inventory-counter{
+    font-weight: bold;
+    background-color: white;
+    border-radius: 1em;
+}
+.profit-amount{
+    color: green !important;
+}
 .seller-name{
     display: flex;
     flex-direction: column;
@@ -109,6 +118,14 @@ export default{
     border-radius: 20em;
     border: 2px solid gray;
 }
+.admin-display-container .seller-profit{
+    background-color: white;
+    margin: 1em 0.5em 1em 0em;
+    padding: .5em .5em .5em 0.2em;
+    border-radius: 1em;
+    font-weight: bold;
+    font-size: medium;
+}
 .seller-header{
     margin: 1em;
 }
@@ -127,20 +144,37 @@ export default{
     height: 40vh;
     max-width: 94%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: nowrap;
     align-content: center;
     justify-content: center;
     align-items: center;
 }
+.admin-display-container img{
+    max-width: 20vh;
+    border-radius: 1em;
+}
 .seller-details{
-    background-color: white;
+    background-color: #f9f9f9;
     border-radius: 1em;
     padding: 1em;
-    width: 50%
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .seller-profit{
     font-size: small;
+}
+
+@media screen and (max-width:700px) {
+    .admin-container, .seller-profit{
+        font-size: small;
+    }
+    .admin-display-container{
+        font-size: x-small;
+    }
 }
 </style>

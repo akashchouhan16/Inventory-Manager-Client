@@ -13,13 +13,19 @@ export default {
         sellingPrice: "",
         quantity: "",
         imageUrl: "",
-        promo: "",
+        promo: ""
       },
     };
   },
   methods: {
     addproduct() {
-      this.$store.dispatch("addsellerproductstoservice", this.obj);
+      if(this.obj.status === false){
+          console.warn('Seller has been disabled by the Admin!')
+      }else{
+        this.obj.sellerId = localStorage.getItem('userId');
+        this.$store.dispatch("addsellerproductstoservice", this.obj);
+      }
+      
     },
     viewProducts(){
       this.$router.push({path: '/sellerdashboard/products', name: 'ProductContainerComponent'})

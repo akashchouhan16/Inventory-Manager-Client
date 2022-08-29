@@ -5,19 +5,19 @@
         <img
           :src="require(`@/assets/brand-logo.png`)"
         /><br />
-        <!-- <div class="info" v-if="sellerobj">
+        <div class="info" v-if="sellerobj">
           NAME: {{ sellerobj.data.name }}<br />
           EMAIL: {{ sellerobj.data.emailId }}<br />
-          ADDRESS:{{ sellerobj.data.address }}<br />
-          ID:{{ sellerobj.data.sellerId }}<br />
-          CONTACT:{{ sellerobj.data.contact }}<br /> -->
-        <!-- </div> -->
-        <div class="info">
+          ADDRESS: {{ sellerobj.data.address }}<br />
+          ID: {{ sellerobj.data.userId.substring(10,20) }}<br />
+          CONTACT: {{ sellerobj.data.contact }}<br />
+        </div>
+        <!-- <div class="info">
           NAME: : Sample Seller<br/>
           ADDRESS: Sample Address<br/>
           ID:   QB65231<br/>
           CONTACT: 9988776655<br/>
-        </div>
+        </div> -->
         <div>
           <input class="view-button" type="button" value="VIEW PRODUCTS"  @click="viewProducts()"/>
         </div>
@@ -79,7 +79,8 @@
           </table>
         </form>
         <div class="button-class">
-          <!-- <input class="add-button" type="button" value="ADD" @click="addproduct()"> -->
+          <input class="add-button" v-if="sellerobj.data.status" type="button" value="ADD" @click="addproduct()">
+          <input class="add-button disabled" v-else type="button" value="Disabled">
         </div>
       </div>
     </div>
@@ -91,6 +92,9 @@
 </script>
 
 <style scoped>
+.disabled {
+  background-color: gray !important;
+}
 .container {
   /* padding:50px; */
   display: flex;
@@ -143,6 +147,7 @@ textarea {
 
 .info {
   margin-top: 30px;
+  text-align: left;
 }
 
 .add-button {

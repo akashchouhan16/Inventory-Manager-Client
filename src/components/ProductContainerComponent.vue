@@ -23,7 +23,8 @@ export default {
 
   created()
   {
-    this.$store.dispatch('getsellerproductsfromservice','QB12')
+    const userId = localStorage.getItem('userId');
+    this.$store.dispatch('getsellerproductsfromservice', userId);
   },
 
 

@@ -17,12 +17,13 @@ export default {
     created(){
         this.$store.dispatch('GET_ALL_SELLERS', {
             success: ()=>{
-                console.log('GET ALL sellers success.');
+                console.log('Get All Sellers success')
             },
             error: ()=>{
-                console.warn('GET ALL seller failure.');
+                console.warn('Something went wrong while seller fetch') 
             }
         })
+        this.$store.dispatch('USER_LOGGED_IN')
     },
     computed:{
         ...mapGetters({
@@ -39,6 +40,10 @@ export default {
         },
         createSeller(){
             this.$router.push({path: `/admindashboard/create`})
+        },
+        processSearch(){
+            this.$store.dispatch('GET_SELLER_FROM_SEARCH', this.searchKey);
+            console.log('Getting all sellers based on search');
         }
     }
 }
