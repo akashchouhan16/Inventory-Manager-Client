@@ -59,7 +59,7 @@ export default ({
                 payload,
                 success: (data) => {
                     console.log(data);
-                    dispatch('getsellerproductsfromservice', 'QB12');
+                    dispatch('getsellerproductsfromservice', localStorage.getItem('userId'));
 
                 },
                 error: (e) => {

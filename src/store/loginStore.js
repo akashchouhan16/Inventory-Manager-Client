@@ -2,11 +2,15 @@ import { attempLogin } from "@/service/LoginService";
 
 export default {
     state: {
-        user: {}
+        user: {},
+        isLoggedIn: false
     },
     getters: {
         getUserDetail(state){
             return state.user;
+        },
+        getLoginStatus(state){
+            return state.isLoggedIn;
         }
     },
     mutations: {
@@ -16,9 +20,15 @@ export default {
         setUserDetailToLocal(state, newUser){
             state.user = newUser || {}
             localStorage.setItem('user', newUser);
+        },
+        setLoginStatus(state, status){
+            state.isLoggedIn = status;
         }
     },
     actions:{
+        USER_LOGGED_IN({commit}){
+            commit('setLoginStatus', true);
+        },
         ATTEMPT_LOGIN(context, {success, error, user}){
             // console.log(state + " | " + user);
             attempLogin({
@@ -33,6 +43,9 @@ export default {
                 },
                 user
             })
+        },
+        LOG_OUT_USER({commit}){
+            commit('setLoginStatus', false); //logged out.
         }
     } 
 }
