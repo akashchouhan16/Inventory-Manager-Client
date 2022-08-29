@@ -1,12 +1,18 @@
 <template >
   <div class="cards">
-    <img
-      src="https://images.samsung.com/is/image/samsung/p6pim/in/2202/gallery/in-galaxy-s22-s901-412948-sm-s901ezwdinu-thumb-530964688?$264_264_PNG$"
-    />
+    <img :src="require(`@/assets/brand-logo.png`)" />
     <div class="info">
       <div class="name">{{ product.productName }}</div>
       <div class="price">₹{{ product.productPrice }}</div>
+      <div class="discriptiontag">
+        Description<span class="discriptiontext">{{
+          product.discription
+        }}</span>
+      </div>
       <div class="quantity">Quantity:{{ product.quantity }}</div>
+      <div class="edit">
+        <input class="edit-product" type="button" value="EDIT" />
+      </div>
     </div>
     <br />
     <div class="modify">
@@ -85,6 +91,38 @@ export default {
 </script>
 
 <style scoped>
+.discriptiontag {
+  margin-top: 3px;
+
+  font-size: 11px;
+
+  border-bottom: 1px grey;
+}
+
+.discriptiontag:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+.discriptiontext {
+  visibility: hidden;
+  background-color: #f9f9f9;
+
+  color: black;
+
+  width: 150px;
+
+  border-radius: 6px;
+
+  padding: 5px 0;
+
+  position: absolute;
+
+  z-index: 1;
+}
+
+.discriptiontag:hover .discriptiontext {
+  visibility: visible;
+}
 .cards {
   height: 85%;
   width: 23.2%;

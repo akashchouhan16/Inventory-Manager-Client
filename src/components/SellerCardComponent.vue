@@ -10,13 +10,19 @@
     <button class="view-inventory-btn" @click="openInventory(seller.userId)">
       {{ !isInventoryOpened ? "View Inventory" : "Opening Inventory.." }}
     </button>
-    <button class="seller-status-btn" :class="[(seller.status)? 'disabled' : 'enabled']" @click="disbaleSeller(seller.userId)">{{sellerStatus? "Disable" : "Enable"}} Seller</button>
+    <button class="seller-status-btn" :class="[(seller.status)? 'enabled' : 'disabled']" @click="disbaleSeller(seller.userId)">{{seller.status? "Disable" : "Enable"}} Seller</button>
   </div>
 </template>
 
 <script src="./scripts/SellerCardComponent.js"></script>
 
 <style scoped>
+.disabled{
+  background-color: red !important;
+}
+.enabled {
+  background-color: #01c5a1 !important;
+}
 .seller-ref-id {
   font-size: small;
   color: gray;

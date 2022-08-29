@@ -1,3 +1,5 @@
+import { mapGetters } from "vuex";
+
 export default{
     name: 'LoginComponent',
     data(){
@@ -6,7 +8,6 @@ export default{
                 emailId: '',
                 password: '',
             },
-            isloggedIn: false,
             errorFlag: {
                 passwordErrorFlag: false,
                 usernameErrorFlag: false, 
@@ -14,6 +15,11 @@ export default{
             loginButtonClass: 'login-button',
             resetButtonClass: 'reset-button',
         }
+    },
+    computed:{
+        ...mapGetters({
+            isloggedIn: 'getLoginStatus'
+        })
     },
     methods: {
         validateCredentials(){
@@ -29,13 +35,7 @@ export default{
                     this.errorFlag.usernameErrorFlag = this.errorFlag.passwordErrorFlag = true;
                 },
                 user: this.user
-            });
-            // localStorage.setItem('role', 'admin');
-            // localStorage.setItem('userId', 'admin');
-            // localStorage.setItem('emailId', this.user.emailId);
-            // this.$router.push({path: '/admindashboard'});
-            // this.isloggedIn = true;
-            
+            });            
         },
         resetCredentials(){
             this.user.emailId = "";
